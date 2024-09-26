@@ -13,10 +13,58 @@
 ////////////////////////*/
 
 /* ------------------------------- 1. Global Styles -------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --text-color: #0C0C0C;
+    --paars: #5722CD;
+    --licht-paars: #F2F0FF; /*  voor de grote zwevende woorden, zoals "hello" en "services" */
+    --blauw: #4845E4;
+    --roze: #ED4385;
+    --licht-grijs: #F3F6F9; /* achtergrond van de projecten */
+    --grijs: #7A7A7A; /*  service tekst */
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Merriweather', serif;
+}
+
+p{
+    font-family: "Roboto", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
 
 /* ------------------------------- 2. Typography ----------------------------------- */
 
 /* ------------------------------- 3. Layout --------------------------------------- */
+
+.outer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 2px solid brown;
+
+}
+
+.inner-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    border: 2px solid green;
+}
 
 /* --------------- 3.1 Reusables ----------------------- */
 
@@ -26,6 +74,88 @@
 
 /* --------------- 4.1 Header ------------------------- */
 
+header {
+    height: 500px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: flex-end;
+    border: 2px solid blue;
+    width: 100%;
+
+
+}
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: flex-end;
+    width: 100%;
+    padding: 5px;
+    gap: 25px;
+}
+
+nav li {
+    list-style: none;
+}
+
+.header-content {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 25px;
+    width: 100%;
+
+}
+
+
 /* --------------- 4.2 Introduction ------------------- */
+
+p em {
+    font-size: 1.25rem;
+    padding: 20px;
+
+}
+
+.introduction {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+/* --------------- 4.3 main content ------------------------- */
+.section-bg-color {
+    background-color: var(--licht-grijs);
+}
+
+.wrapper-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper-image {
+
+    flex-basis: 800px;
+    flex-grow: 0;
+    flex-shrink: 1;
+    border: 2px solid darkgreen;
+}
+article {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid red;
+    }
+
+
+/* --------------- 4.4 grid block ------------------------- */
+
+/* --------------- 4.5 Contact form ------------------------- */
 
 /* ------------------------------- 5. Media Queries -------------------------------- */
