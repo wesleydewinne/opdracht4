@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto:wght@300;400;700&display=swap');
 /*////////////////////////
     Table of Contents
     1. Global Styles
@@ -8,13 +9,14 @@
     4. Areas
         4.1 Header
         4.2 Introduction
-        etc.
+        4.3 Work aria
+        4.4 Services block
+        4.5 Contact aria
+        4.6 Footer
     5. Media Queries
 ////////////////////////*/
 
 /* ------------------------------- 1. Global Styles -------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 * {
     margin: 0;
@@ -23,139 +25,408 @@
 }
 
 :root{
-    --text-color: #0C0C0C;
-    --paars: #5722CD;
-    --licht-paars: #F2F0FF; /*  voor de grote zwevende woorden, zoals "hello" en "services" */
-    --blauw: #4845E4;
-    --roze: #ED4385;
-    --licht-grijs: #F3F6F9; /* achtergrond van de projecten */
-    --grijs: #7A7A7A; /*  service tekst */
+    --black-text-color: #0C0C0C; /* voor standaard tekst */
+    --purple: #5722CD;
+    --white: #F2F0FF; /*  voor de grote zwevende woorden, zoals "hello" en "services" */
+    --bleu: #4845E4;
+    --pink: #ED4385;
+    --light-grey: #F3F6F9; /* voor de achtergrond van de projecten */
+    --grey: #7A7A7A; /*  voor de service tekst */
 }
 
-h1,h2,h3,h4,h5,h6{
-    font-family: 'Merriweather', serif;
-}
 
-p{
-    font-family: "Roboto", sans-serif;
+body {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 62.5%;
 }
-
-a {
-    text-decoration: none;
-}
-
 
 /* ------------------------------- 2. Typography ----------------------------------- */
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: Merriweather, 'Times New Roman', serif;
+}
+
+h1, h2 {
+    font-size: 3.3rem;
+    padding: 1.6rem 0;
+}
+
+h3 {
+    font-size: 3.1rem;
+}
+
+h4 {
+    font-size: 3.2rem;
+    padding: 1.2rem 0;
+    margin: 2.4rem 0;
+}
+
+h5 {
+    font-size: 3.2rem;
+    padding: 1.2rem 0;
+}
+
+h6 {
+    font-size: 2.3rem;
+    line-height: 1.5;
+    padding: 1.2rem 0;
+}
+
+p {
+    font-size: 1.6rem;
+    margin: 1.2rem 0;
+}
+
+a {
+    font-size: 1.4rem;
+}
+
 /* ------------------------------- 3. Layout --------------------------------------- */
-
-.outer-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    border: 2px solid brown;
-
-}
-
-.inner-container {
-    display: flex;
-    flex-direction: column;
-    max-width: 700px;
-    border: 2px solid green;
-}
 
 /* --------------- 3.1 Reusables ----------------------- */
 
+/* De buitenste container is altijd de volledige schermbreedte. Het is een flexbox container die zijn inhoud altijd netjes horizontaal centreert */
+.outer-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*De binnenste container is maximaal 1400px breed, zodat het er ook goed uitziet op brede schermen.
+Hij mag krimpen als het scherm minder breed wordt, maar niet groeien als er meer ruimte is.*/
+.inner-container {
+    flex-basis: 140rem;
+    flex-shrink: 1;
+    flex-grow: 0;
+    /*We voegen margin toe aan de linker- en rechterkant, zodat de content nooit helemaal tegen de rand gedrukt kan worden*/
+    margin: 0 2rem;
+    /*We zorgen er ook voor dat deze flex-item op haar beurt ook weer een flexbox container is, waarin alle children onder elkaar komen te staan*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*We gebruiken hier geen flex-basis property, omdat dit element soms in een parent met column-richting en soms in een parent met row-richting kan staan.
+In een column gaat flex-basis over de hoogte, niet de breedte. Dus om dan alsnog de breedte te veranderen, hebben we max-width (nooit groter dan dit) property nodig */
+.text-aria {
+    max-width: 850px;
+    text-align: center;
+}
+
+.area-padding {
+    padding: 10rem 0;
+}
+
 /* --------------- 3.2 Other --------------------------- */
+
+a {
+    text-decoration: none;
+    color: var(--purple);
+}
+
+button {
+    font-size: 1.4rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--white);
+    background-color: var(--pink);
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 5px 8px 4px rgba(0, 0, 0, .2);
+    padding: 2.5rem 4rem;
+    margin: 2.8rem 0;
+}
+
+button:hover {
+    cursor: pointer;
+}
 
 /* ------------------------------- 4. Areas ---------------------------------------- */
 
 /* --------------- 4.1 Header ------------------------- */
 
 header {
-    height: 500px;
+    background: linear-gradient(270deg, rgba(87,34,192,1) 50%, rgba(72,69,228,1) 100%);
+    clip-path: polygon(0 0,100% 0, 100% 95%, 0 85%);
+    color: white;
+    padding: 3rem 0;
+    position: relative;
 }
 
-nav {
+.header-navigation {
     display: flex;
     flex-direction: row;
+    /*De <ul> die in de <nav> zit, wordt rechts (einde van de rij) uitgelijnd */
     justify-content: flex-end;
-    align-content: flex-end;
-    border: 2px solid blue;
+    /*De <nav> moet de beschikbare breedte van de pagina aannemen, anders valt er niks uit te lijnen aan de rechterkant */
     width: 100%;
-
-
 }
-nav ul {
+
+.header-navigation ul {
+    /*Om ervoor te zorgen dat de menu-items op normale afstand van elkaar staan, zorgen we dat de parent: <ul> minimaal 400px breed is*/
+    flex-basis: 400px;
+    flex-shrink: 1;
+    flex-grow: 0;
+    list-style-type: none;
+    /*Dit flex-item is op haar beurt ook weer een flex-container, die de <li> die erin zitten netjes evenredig verdeelt*/
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    align-content: flex-end;
-    width: 100%;
-    padding: 5px;
-    gap: 25px;
+    justify-content: space-between;
 }
 
-nav li {
-    list-style: none;
+.header-navigation a {
+    color: white;
 }
 
-.header-content {
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 25px;
-    width: 100%;
-
+.header-hero {
+    padding: 100px 0;
+    margin-bottom: 88px;
+    font-size: 28px;
 }
 
+.header-squiggle {
+    display: block;
+    width: 78px;
+    height: 100px;
+    margin: 0 0 80px 0;
+    position: absolute;
+    bottom: 0;
+    /*Hiermee zeggen we: plaats 'm horizontaal gezien op 50% van de breedte,
+    MAAR wel min de helft van de breedte van de afbeelding zelf (width: 78px) */
+    left: calc(50% - 39px);
+    background-image: url(../assets/squiggle_line_stripe.svg);
+}
 
 /* --------------- 4.2 Introduction ------------------- */
 
-p em {
-    font-size: 1.25rem;
-    padding: 20px;
-
+#intro {
+    background-color: white;
+    color: #5722CD;
 }
 
-.introduction {
+.intro-link {
+    color: #0c0c0c;
+    font-weight: 500;
+    margin-top: 10rem;
+}
+
+/* --------------- 4.3 Work aria --------------------------- */
+
+#work {
+    background-color: #F3F6F9;
+}
+
+.work-article {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-}
-/* --------------- 4.3 main content ------------------------- */
-.section-bg-color {
-    background-color: var(--licht-grijs);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 10rem 0;
 }
 
-.wrapper-box {
+/*Draai de volgorde van de afbeelding en tekst om bij de 1e, 3e, etc.*/
+.work-article:nth-of-type(odd) {
+    flex-direction: row-reverse;
+}
+
+.work-article-image {
+    /*De afbeelding-wrapper moet in de basis 800px breed zijn...*/
+    flex-basis: 80rem;
+    /*Als er meer ruimte is, mag hij NIET groter worden*/
+    flex-grow: 0;
+    /*Als er minder ruimte is, krimpt hij 1 fractie (dus alles) van de ingeleverde ruimte*/
+    flex-shrink: 1;
+}
+
+.work-article-image img {
+    /*Om afbeeldingen goed mee te laten schalen met de wrapper, zet je de afbeelding zelf altijd op 100% breedte.
+    Zo past de afbeelding zich telkens aan, aan zijn omgeving*/
+    width: 100%;
+    box-shadow: 0 32px 28px -10px rgba(0, 0, 0, 0.22);
+}
+
+.work-article-info {
+    /*De content moet in de basis 480 breed zijn*/
+    flex-basis: 480px;
+    /*Als er meer ruimte is, mag hij NIET groter worden*/
+    flex-grow: 0;
+    /*Als er minder ruimte is, mag hij NIET kleiner worden*/
+    flex-shrink: 0;
+    padding: 0 5rem 5rem 5rem;
+}
+
+.work-article-info img {
+    margin-top: 2.4rem;
+    width: 5.7rem;
+    height: 0.6rem;
+}
+
+.work-article-info p {
+    font-weight: 400;
+    margin: 5rem 0;
+}
+
+.work-article-project-link {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --------------- 4.4 Services block ------------------------ */
+
+#services {
+    background-color: white;
+}
+
+#services > div {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: stretch;
 }
-.wrapper-image {
 
-    flex-basis: 800px;
+.service-tile {
+    /*De tegel moet in de basis 480 breed zijn*/
+    flex-basis: 480px;
+    /*Als er meer ruimte is, mag hij NIET groter worden*/
     flex-grow: 0;
+    /*Als er minder ruimte is, krimpt hij 1 fractie (dus alle tegels evenveel) van de ingeleverde ruimte*/
     flex-shrink: 1;
-    border: 2px solid darkgreen;
-}
-article {
+    /*Deze tegel is op haar beurt weer een flexbox-container */
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
+    padding: 4rem;
+    background-color: white;
+    border: 1px solid #5722CD;
+    box-shadow: 0 11px 16px 0 rgba(0, 0, 0, 0.1);
+    color: #7A7A7A;
+    font-size: 1.6rem;
+}
+
+.service-tile-title {
+    color: #5722CD;
+    font-size: 2.4rem;
+}
+
+.service-tile-icon {
+    width: 80px;
+}
+
+/* --------------- 4.5 Contact aria ------------------------ */
+
+#contact {
+    background: linear-gradient(270deg, rgba(87,34,192,1) 50%, rgba(72,69,228,1) 100%);
+    clip-path: polygon(0 0,100% 10%, 100% 100%, 0 100%);
+    /*Mocht een verouderde browser geen gradients ondersteunen, dan valt de browser terug op de "effen" achtergrondkleur hierboven*/
+
+    color: white;
+    position: relative;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+    background-color: #ffffff;
+    border: 1px solid #7A7A7A;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px;
+    display: block;
+    font-size: 16px;
+    color: #7A7A7A;
+    width: 100%;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #7A7A7A;
+}
+
+.contact-form label {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 20px 0;
+}
+
+.contact-form button {
+    width: 20rem;
+    align-self: center;
+}
+
+/* --------------- 4.6 Footer ------------------------- */
+
+#footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 1rem;
+}
+
+
+/* ------------------------------- 5. Media Queries -------------------------------- */
+
+@media screen and (max-width: 60rem) {
+
+    h1, h2 {
+        font-size: 3.4rem;
+        padding: 1.6rem 0;
+    }
+
+    h3 {
+        font-size: 2.6rem;
     }
 
 
-/* --------------- 4.4 grid block ------------------------- */
+    h6 {
+        font-size: 2.2rem;
+        line-height: 1.5;
+        padding: 1.2rem 0;
+        }
 
-/* --------------- 4.5 Contact form ------------------------- */
+    .header-navigation {
+        justify-content: center;
+    }
 
-/* ------------------------------- 5. Media Queries -------------------------------- */
+    .header-navigation a {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    .intro-link {
+        margin: 5rem 0 0 0;
+    }
+
+    .work-article:nth-of-type(odd),
+    .work-article {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .work-article-image {
+        flex-basis: auto;
+    }
+
+    .work-article-info {
+        padding: 0 0 5rem 0;
+        flex-basis: auto;
+    }
+
+    #services > div {
+        padding: 10rem 0 5rem 0;
+    }
+}
+
+
